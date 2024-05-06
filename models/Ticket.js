@@ -18,11 +18,6 @@ const TicketModel = new mongoose.Schema(
       min: 5,
     },
 
-    isUsed: {
-      type: Boolean,
-      default: false,
-    },
-
     status: {
       type: String,
       enum: ["Used", "New"],

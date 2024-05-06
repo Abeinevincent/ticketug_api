@@ -36,11 +36,10 @@ router.put("/updatebycode/:code", async (req, res) => {
     const ticket = await Ticket.findOneAndUpdate(
       {
         status: "New",
-        isUsed: false,
         ticket_code: req.params.code,
       },
       {
-        $set: { status: "Used", isUsed: true },
+        $set: { status: "Used" },
       },
       { new: true }
     );
