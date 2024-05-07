@@ -41,6 +41,8 @@ router.get("/findbycode/:code", async (req, res) => {
 
 router.put("/updatebycode/:code", async (req, res) => {
   try {
+    const code = req.params.code;
+
     const tickett = await Ticket.findOne({
       ticket_code: code,
     });
