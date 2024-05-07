@@ -69,43 +69,21 @@ router.put("/updatebycode/:code", async (req, res) => {
       return res.status(200).json({ message: "Updated successflly", ticket });
     } else if (ticketbandd) {
       console.log("ticket band status", ticketbandd.status);
-      if (ticketbandd.status === "New") {
-        // if its New, set it to used
-        const ticket = await TicketBand.updateOne(
-          {
-            status: "New",
-            ticket_code: code,
-          },
-          {
-            $set: { status: "Used" },
-          },
-          { new: true }
-        );
-        console.log("status is New!", ticket.status);
 
-        return res.status(200).json({ message: "Updated successflly", ticket });
-      } else if (ticketbandd.status === "Used") {
-        // if its Used, set it to expired
-        const ticket = await TicketBand.updateOne(
-          {
-            status: "Used",
-            ticket_code: code,
-          },
-          {
-            $set: { status: "Expired" },
-          },
-          { new: true }
-        );
-        console.log("status is Used!", ticket.status);
+      // if its New, set it to used
+      const ticket = await TicketBand.findOneAndUpdate(
+        {
+          status: "New",
+          ticket_code: code,
+        },
+        {
+          $set: { status: "Used" },
+        },
+        { new: true }
+      );
+      console.log("status is New!", ticket.status);
 
-        return res.status(200).json({ message: "Updated successflly", ticket });
-      } else if (ticketbandd.status === "Expired") {
-        console.log("expired ticket");
-        return res.status(401).json("Ticket expired!");
-      } else {
-        console.log("status not available");
-        return res.status(400).json("Ticket status available not supported!");
-      }
+      return res.status(200).json({ message: "Updated successflly", ticket });
     }
   } catch (err) {
     console.log(err, "internal error");

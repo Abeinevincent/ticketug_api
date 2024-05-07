@@ -14,7 +14,7 @@ const TicketBandModel = new mongoose.Schema(
 
     status: {
       type: String,
-      enum: ["Used", "New", "Expired"],
+      enum: ["Used", "New"],
       default: "New",
     },
   },
