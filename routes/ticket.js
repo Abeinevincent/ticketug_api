@@ -72,10 +72,10 @@ router.put("/updatebycode/:code", async (req, res) => {
       if (ticketbandd.status === "New") {
         console.log("there is ticketband!");
         // if its New, set it to used
-        const ticket = await TicketBand.findOneAndUpdate(
+        const ticket = await TicketBand.updateOne(
           {
             status: "New",
-            ticket_code: req.params.code,
+            ticket_code: code,
           },
           {
             $set: { status: "Used" },
@@ -85,10 +85,10 @@ router.put("/updatebycode/:code", async (req, res) => {
         res.status(200).json({ message: "Updated successflly", ticket });
       } else if (ticketbandd.status === "Used") {
         // if its Used, set it to expired
-        const ticket = await TicketBand.findOneAndUpdate(
+        const ticket = await TicketBand.updateOne(
           {
             status: "Used",
-            ticket_code: req.params.code,
+            ticket_code: code,
           },
           {
             $set: { status: "Expired" },
