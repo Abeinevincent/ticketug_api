@@ -55,7 +55,6 @@ router.put("/updatebycode/:code", async (req, res) => {
       console.log("no ticket/ticket band found!");
       return res.status(404).json("No ticket found");
     } else if (tickett) {
-      console.log("ticket");
       const ticket = await Ticket.findOneAndUpdate(
         {
           status: "New",
@@ -69,8 +68,9 @@ router.put("/updatebycode/:code", async (req, res) => {
 
       res.status(200).json({ message: "Updated successflly", ticket });
     } else if (ticketbandd) {
-      console.log("there is ticketband!");
+      console.log("ticket band status", ticketbandd.status);
       if (ticketbandd.status === "New") {
+        console.log("there is ticketband!");
         // if its New, set it to used
         const ticket = await TicketBand.findOneAndUpdate(
           {
