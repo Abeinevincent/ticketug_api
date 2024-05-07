@@ -5,6 +5,7 @@ const {
 const qr = require("qr-image");
 const { createCanvas, loadImage } = require("canvas");
 const Ticket = require("../models/Ticket");
+const TicketBand = require("../models/TicketBand");
 
 // Create a function to generate the ticket image
 const generateTicket = async () => {
@@ -20,13 +21,17 @@ const generateTicket = async () => {
   const finalTicketCode = generateRandomString();
 
   // random 6 character backup number
-  const randomSixDigitNumber = Math.floor(100000 + Math.random() * 900000);
-  console.log(finalTicketCode, randomSixDigitNumber);
+  // const randomSixDigitNumber = Math.floor(100000 + Math.random() * 900000);
+  // console.log(finalTicketCode, randomSixDigitNumber);
 
-  await Ticket.create({
+  // await Ticket.create({
+  //   ticket_code: finalTicketCode,
+  //   backup_code: randomSixDigitNumber,
+  //   ticket_class: "VIP",
+  // });
+
+  await TicketBand.create({
     ticket_code: finalTicketCode,
-    backup_code: randomSixDigitNumber,
-    ticket_class: "VIP",
   });
 
   // Generate QR code
