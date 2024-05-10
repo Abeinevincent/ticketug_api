@@ -57,8 +57,8 @@ router.put("/updatebycode/:code", async (req, res) => {
     } else if (tickett) {
       const ticket = await Ticket.findOneAndUpdate(
         {
-          status: "New",
           ticket_code: req.params.code,
+          status: "New",
         },
         {
           $set: { status: "Used" },
@@ -73,7 +73,7 @@ router.put("/updatebycode/:code", async (req, res) => {
       // if its New, set it to used
       const ticket = await TicketBand.findOneAndUpdate(
         {
-          status: "New",
+          status: { $in: ["new", "used"] },
           ticket_code: code,
         },
         {

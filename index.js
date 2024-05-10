@@ -47,7 +47,7 @@ const genTicketAtInterval = async () => {
 // });
 // setInterval(() => {
 //   genTicketAtInterval();
-// }, 2000);
+// }, 1500);
 
 // Serve static files from the public folder
 app.use(express.static("public"));
