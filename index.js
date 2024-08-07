@@ -9,6 +9,7 @@ const morgan = require("morgan");
 const helmet = require("helmet");
 const dotenv = require("dotenv").config();
 const ticketRoute = require("./routes/ticket");
+const Ticket = require("./models/Ticket");
 
 const app = express();
 const PORT = 3000;
@@ -50,9 +51,23 @@ const genTicketAtInterval = async () => {
 // }, 1500);
 
 // Serve static files from the public folder
+
 app.use(express.static("public"));
 
 app.use("/tickets/", ticketRoute);
+
+app.post("/update-status", async (req, res) => {
+  try {
+    // Update all documents where status is 'used' to 'new'
+    const result = await Ticket.updateMany(
+      { status: "Used" },
+      { $set: { status: "New" } }
+    );
+    console.log("Documents updated:", result.nModified);
+  } catch (error) {
+    console.error("Error updating documents:", error);
+  }
+});
 
 // Start the server
 app.listen(PORT, () => {

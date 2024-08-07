@@ -47,11 +47,11 @@ router.put("/updatebycode/:code", async (req, res) => {
       ticket_code: code,
     });
 
-    const ticketbandd = await TicketBand.findOne({
-      ticket_code: code,
-    });
+    // const ticketbandd = await TicketBand.findOne({
+    //   ticket_code: code,
+    // });
 
-    if (!tickett && !ticketbandd) {
+    if (!tickett) {
       console.log("no ticket/ticket band found!");
       return res.status(404).json("No ticket found");
     } else if (tickett) {
@@ -67,24 +67,25 @@ router.put("/updatebycode/:code", async (req, res) => {
       );
 
       return res.status(200).json({ message: "Updated successflly", ticket });
-    } else if (ticketbandd) {
-      console.log("ticket band status", ticketbandd.status);
-
-      // if its New, set it to used
-      const ticket = await TicketBand.findOneAndUpdate(
-        {
-          status: { $in: ["new", "used"] },
-          ticket_code: code,
-        },
-        {
-          $set: { status: "Used" },
-        },
-        { new: true }
-      );
-      console.log("status is New!", ticket.status);
-
-      return res.status(200).json({ message: "Updated successflly", ticket });
     }
+    // else if (ticketbandd) {
+    //   console.log("ticket band status", ticketbandd.status);
+
+    //   // if its New, set it to used
+    //   const ticket = await TicketBand.findOneAndUpdate(
+    //     {
+    //       status: { $in: ["new", "used"] },
+    //       ticket_code: code,
+    //     },
+    //     {
+    //       $set: { status: "Used" },
+    //     },
+    //     { new: true }
+    //   );
+    //   console.log("status is New!", ticket?.status);
+
+    //   return res.status(200).json({ message: "Updated successflly", ticket });
+    // }
   } catch (err) {
     console.log(err, "internal error");
     return res.status(500).json(err);
