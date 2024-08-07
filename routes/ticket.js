@@ -23,13 +23,13 @@ router.get("/findbycode/:code", async (req, res) => {
     });
     // console.log(ticket);
 
-    const ticketband = await TicketBand.findOne({
-      ticket_code: code,
-    });
+    // const ticketband = await TicketBand.findOne({
+    //   ticket_code: code,
+    // });
     // console.log(ticketband);
 
-    if (ticket || ticketband) {
-      return res.status(200).json(ticket ? ticket : ticketband);
+    if (ticket) {
+      return res.status(200).json(ticket);
     } else {
       return res.status(404).json("Ticket not found!");
     }
