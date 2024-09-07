@@ -12,7 +12,7 @@ const ticketRoute = require("./routes/ticket");
 const Ticket = require("./models/Ticket");
 
 const app = express();
-const PORT = 3000;
+const PORT = 4000;
 
 // Middlewares
 app.use(cors());
@@ -42,13 +42,13 @@ const genTicketAtInterval = async () => {
     console.log("Ticket generated successfully!");
   } catch (error) {
     console.error("Error generating ticket:", error);
-    // res.status(500).send("Internal Server Error");
+    res.status(500).json("Internal Server Error");
   }
 };
 // });
 // setInterval(() => {
 //   genTicketAtInterval();
-// }, 1500);
+// }, 1200);
 
 // Serve static files from the public folder
 
