@@ -9,7 +9,7 @@ router.get("/find/all", async (req, res) => {
     const tickets = await Ticket.find();
     const ticket_bands = await TicketBand.find();
 
-    return res.status(200).json([...ticket_bands, ...tickets]);
+    return res.status(200).json([...ticket_bands]);
     // return res.status(200).json(tickets);
   } catch (err) {
     console.log(err);
