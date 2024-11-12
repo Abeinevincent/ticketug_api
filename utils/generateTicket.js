@@ -24,11 +24,11 @@ const generateTicket = async () => {
   // const randomSixDigitNumber = Math.floor(100000 + Math.random() * 900000);
   // console.log(finalTicketCode, randomSixDigitNumber);
 
-  // await Ticket.create({
-  //   ticket_code: finalTicketCode,
-  //   backup_code: randomSixDigitNumber,
-  //   ticket_class: "VIP",
-  // });
+  await TicketBand.create({
+    ticket_code: finalTicketCode,
+    backup_code: randomSixDigitNumber,
+    ticket_class: "VIP",
+  });
 
   await TicketBand.create({
     ticket_code: finalTicketCode,
