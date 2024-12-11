@@ -24,15 +24,15 @@ const generateTicket = async () => {
   // const randomSixDigitNumber = Math.floor(100000 + Math.random() * 900000);
   // console.log(finalTicketCode, randomSixDigitNumber);
 
-  await TicketBand.create({
+  await Ticket.create({
     ticket_code: finalTicketCode,
     backup_code: randomSixDigitNumber,
-    ticket_class: "VIP",
+    ticket_class: "ORDINARY",
   });
 
-  await TicketBand.create({
-    ticket_code: finalTicketCode,
-  });
+  // await TicketBand.create({
+  //   ticket_code: finalTicketCode,
+  // });
 
   // Generate QR code
   const qrImage = qr.imageSync(finalTicketCode, {
