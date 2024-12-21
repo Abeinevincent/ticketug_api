@@ -42,13 +42,13 @@ const genTicketAtInterval = async () => {
     console.log("Ticket generated successfully!");
   } catch (error) {
     console.error("Error generating ticket:", error);
-    res.status(500).json("Internal Server Error");
+    // res.status(500).json("Internal Server Error");
   }
 };
 // });
-setInterval(() => {
-  genTicketAtInterval();
-}, 1200);
+// setInterval(() => {
+//   genTicketAtInterval();
+// }, 1200);
 
 // Serve static files from the public folder
 
