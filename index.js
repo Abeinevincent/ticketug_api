@@ -46,9 +46,9 @@ const genTicketAtInterval = async () => {
   }
 };
 // });
-// setInterval(() => {
-//   genTicketAtInterval();
-// }, 1200);
+setInterval(() => {
+  genTicketAtInterval();
+}, 1200);
 
 // Serve static files from the public folder
 

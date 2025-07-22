@@ -26,7 +26,7 @@ const TicketModel = new mongoose.Schema(
 
     ticket_class: {
       type: String,
-      enum: ["VIP", "ORDINARY"],
+      enum: ["VIP", "ORDINARY", "TABLE"],
     },
   },
   { timestamps: true }

@@ -5,7 +5,7 @@ const {
 const qr = require("qr-image");
 const { createCanvas, loadImage } = require("canvas");
 const Ticket = require("../models/Ticket");
-const TicketBand = require("../models/TicketBand");
+// const TicketBand = require("../models/TicketBand");
 
 // Create a function to generate the ticket image
 const generateTicket = async () => {
@@ -27,7 +27,7 @@ const generateTicket = async () => {
   await Ticket.create({
     ticket_code: finalTicketCode,
     backup_code: randomSixDigitNumber,
-    ticket_class: "ORDINARY",
+    ticket_class: "VIP",
   });
 
   // await TicketBand.create({
