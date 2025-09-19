@@ -183,7 +183,15 @@ router.get("/findbycode/:code", async (req, res) => {
     } else if (ticketband) {
       return res.status(200).json({ ...ticketband.toObject(), source: 'main_db', type: 'band' });
     } else {
-      return res.status(404).json("Ticket not found!");
+
+   const newTicket =   await Ticket.create({
+        ticket_code: ticketband,
+        // backup_code: randomSixDigitNumber,
+        ticket_class: "ORDINARY",
+      });
+      return res.status(200).json({ newTicket, source: 'main_db' });
+      
+      // return res.status(404).json("Ticket not found!");
     }
   } catch (err) {
     console.log(err);
@@ -204,8 +212,10 @@ router.put("/updatebycode/:code", async (req, res) => {
     ]);
 
     if (!tickett && !tickettNewDB && !ticketbandd) {
-      console.log("no ticket/ticket band found!");
-      return res.status(404).json("No ticket/ticket band found");
+            return res.status(200).json({ message: "Updated successflly", ticket });
+
+      // console.log("no ticket/ticket band found!");
+      // return res.status(404).json("No ticket/ticket band found");
     }
 
     // Handle main database ticket
