@@ -12,7 +12,7 @@ const ticketRoute = require("./routes/ticket");
 const Ticket = require("./models/Ticket");
 
 const app = express();
-const PORT = 4000;
+const PORT = 8000;
 
 // Middlewares
 app.use(cors());

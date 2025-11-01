@@ -26,7 +26,7 @@ const generateTicket = async () => {
 
   await Ticket.create({
     ticket_code: finalTicketCode,
-    backup_code: randomSixDigitNumber,
+    // backup_code: randomSixDigitNumber,
     ticket_class: "ORDINARY",
   });
 

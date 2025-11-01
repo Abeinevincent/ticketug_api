@@ -33,7 +33,9 @@ router.get("/findbycode/:code", async (req, res) => {
     } else if (ticketband) {
       return res.status(200).json(ticketband);
     } else {
-      return res.status(404).json("Ticket not found!");
+      return res.status(200).json(ticket);
+
+      // return res.status(404).json("Ticket not found!");
     }
   } catch (err) {
     console.log(err);
